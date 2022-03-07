@@ -7,15 +7,15 @@ public class Sketch extends PApplet {
   int intWidth = 800;
   int intHeight = 800;
 
-  float fltCloudSize = random(intWidth / 20, intHeight / 8);
+  float fltCloudSize = random(intWidth / 20, intWidth / 8);
   float fltCloudDistance = (fltCloudSize / 1.75f);
   float fltCloudX = random(fltCloudSize, intWidth);
   float fltCloudY = random(fltCloudSize, intHeight / 2);
 
-  float fltCloudSize2 = random(intWidth / 20, intHeight / 8);
-  float fltCloudDistance2 = (fltCloudSize / 1.75f);
-  float fltCloudX2 = random(fltCloudSize, intWidth);
-  float fltCloudY2 = random(fltCloudSize, intHeight / 2);
+  float fltCloudSize2 = random(intWidth / 20, intWidth / 8);
+  float fltCloudDistance2 = (fltCloudSize2 / 1.75f);
+  float fltCloudX2 = random(fltCloudSize2, intWidth);
+  float fltCloudY2 = random(fltCloudSize2, intHeight / 2);
 
   // background size
   public void settings() {
@@ -32,6 +32,16 @@ public class Sketch extends PApplet {
     noStroke();
     fill(251, 255, 255);
     
+    // if the x position of the either cloud is more than half of the width, the background changes colour
+    if (fltCloudX > intWidth / 2 || fltCloudX2 > intWidth / 2) {
+      background(144, 238, 144);
+    }
+
+    // if both cloudsizes are larger than the width / 10, the clouds change colour
+    if (fltCloudSize > intWidth / 10 && fltCloudSize2 > intWidth / 10) {
+      fill(244, 226, 198);
+    }
+
     // cloud 1 that has random positions and sizes
     ellipse(fltCloudX, fltCloudY, fltCloudSize, fltCloudSize);
     ellipse(fltCloudX + fltCloudDistance, fltCloudY, fltCloudSize, fltCloudSize);
@@ -50,7 +60,7 @@ public class Sketch extends PApplet {
     ellipse(fltCloudX2 + fltCloudDistance2 * 1.5f, fltCloudY2 - fltCloudDistance2, fltCloudSize2, fltCloudSize2);
     ellipse(fltCloudX2 + fltCloudDistance2 * 2.5f, fltCloudY2 - fltCloudDistance2, fltCloudSize2, fltCloudSize2);
     
-    // box to put 
+    // box to put time in
     fill(255, 255);
     stroke(153);
     rect(150, 500, 500, 200);
